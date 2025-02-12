@@ -49,7 +49,7 @@ setup(
         'numpy>=1.8.0',
         'six',
         'decorator',
-        'mir_eval @ git+https://github.com/craffel/mir_eval@main'
+        'mir_eval>=0.8'
     ],
     extras_require={
         'display': ['matplotlib>=1.5.0'],
