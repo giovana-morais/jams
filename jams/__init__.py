@@ -18,9 +18,22 @@ from .nsconvert import convert
 from .schema import list_namespaces
 
 
-# Populate the namespace mapping
-for ns in chain(*map(lambda p: p.rglob('*.json'), resources.files('jams.schemata.namespaces').iterdir())):
-    schema.add_namespace(ns)
+# # Populate the namespace mapping
+# for ns in chain(*map(lambda p: p.rglob('*.json'), resources.files('jams.schemata.namespaces').iterdir())):
+# Ensure that the package exists and contains the expected resources
+try:
+    resource_path = resources.files('jams.schemata.namespaces')
+    if resource_path is None:
+        raise ValueError("Resource path is None")
+
+    # Iterate over the directories and search for JSON files
+    json_files = chain(*map(lambda p: p.rglob('*.json'), resource_path.iterdir()))
+
+    # Check if any JSON files were found
+    for ns in json_files:
+		schema.add_namespace(ns)
+except Exception as e:
+    print(f"An error occurred: {e}")
 
 # Populate local namespaces
 
