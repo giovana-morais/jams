@@ -20,6 +20,7 @@ from .schema import list_namespaces
 
 # # Populate the namespace mapping
 # for ns in chain(*map(lambda p: p.rglob('*.json'), resources.files('jams.schemata.namespaces').iterdir())):
+
 # Ensure that the package exists and contains the expected resources
 try:
     resource_path = resources.files('jams.schemata.namespaces')
@@ -31,7 +32,7 @@ try:
 
     # Check if any JSON files were found
     for ns in json_files:
-		schema.add_namespace(ns)
+        schema.add_namespace(ns)
 except Exception as e:
     print(f"An error occurred: {e}")
 
